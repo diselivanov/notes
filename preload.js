@@ -1,8 +1,5 @@
-const { contextBridge, ipcRenderer } = require('electron')
-
-// Предоставляем безопасные API для работы с заметками
+const { contextBridge, ipcRenderer } = require('electron');
 contextBridge.exposeInMainWorld('electronAPI', {
   loadNotes: () => ipcRenderer.invoke('notes:load'),
-  saveNotes: (notes) => ipcRenderer.invoke('notes:save', notes),
-  deleteNote: (id) => ipcRenderer.invoke('notes:delete', id)
-})
+  saveNotes: (data) => ipcRenderer.invoke('notes:save', data),
+});

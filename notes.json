@@ -1,44 +1,4 @@
-[
-  {
-    "id": "mg9omwa5akuqgtdxrch",
-    "title": "Рефакторинг кода веб-приложени",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:42.125Z",
-    "updatedAt": "2025-10-02T17:43:00.847Z"
-  },
-  {
-    "id": "mg9omlm2jcsnffcer4",
-    "title": "Заметка",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:28.298Z",
-    "updatedAt": "2025-10-02T17:25:16.046Z"
-  },
-  {
-    "id": "mg9omw1ldljm5qy79mm",
-    "title": "Заметка",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:41.817Z",
-    "updatedAt": "2025-10-02T17:25:12.265Z"
-  },
-  {
-    "id": "mg9omvq4v7v8tppw6qi",
-    "title": "Заметка",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:41.404Z",
-    "updatedAt": "2025-10-02T17:25:09.088Z"
-  },
-  {
-    "id": "mg9omw69w42pjcr416s",
-    "title": "Заметка",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:41.985Z",
-    "updatedAt": "2025-10-02T17:25:05.975Z"
-  },
-  {
-    "id": "mg9omwebf8mjhtg0vu",
-    "title": "Заметка",
-    "content": "Заметка",
-    "createdAt": "2025-10-02T17:21:42.275Z",
-    "updatedAt": "2025-10-02T17:25:02.365Z"
-  }
-]
+{
+  "notes": [],
+  "folders": []
+}

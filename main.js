@@ -1,83 +1,80 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main')
-const path = require('node:path')
-const fs = require('fs')
+const { app, BrowserWindow, ipcMain } = require('electron/main');
+const path = require('node:path');
+const fs = require('fs');
 
-const NOTES_FILE = 'notes.json'
+const NOTES_FILE = 'notes.json';
 
-// Функция для загрузки заметок из файла
-function loadNotes() {
+function loadData() {
   try {
     if (fs.existsSync(NOTES_FILE)) {
-      const data = fs.readFileSync(NOTES_FILE, 'utf8')
-      return JSON.parse(data)
+      const data = fs.readFileSync(NOTES_FILE, 'utf8');
+      return JSON.parse(data);
     }
   } catch (error) {
-    console.error('Error loading notes:', error)
+    console.error('Error loading data:', error);
   }
-  return []
+  return {
+    notes: [],
+    folders: [],
+  };
 }
 
-// Функция для сохранения заметок в файл
-function saveNotes(notes) {
+function saveData(data) {
   try {
-    fs.writeFileSync(NOTES_FILE, JSON.stringify(notes, null, 2))
-    return true
+    fs.writeFileSync(NOTES_FILE, JSON.stringify(data, null, 2));
+    return true;
   } catch (error) {
-    console.error('Error saving notes:', error)
-    return false
+    console.error('Error saving data:', error);
+    return false;
   }
 }
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 900,
+    width: 1000,
     height: 600,
-    minWidth: 900,
+    minWidth: 1000,
     minHeight: 600,
+    frame: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       enableRemoteModule: false,
-      nodeIntegration: false
+      nodeIntegration: false,
     },
-    titleBarStyle: 'default',
-    show: false
-  })
+    show: false,
+  });
 
-  win.loadFile('index.html')
+  win.setMenuBarVisibility(false);
+  win.setAutoHideMenuBar(true);
+
+  win.loadFile('index.html');
 
   win.once('ready-to-show', () => {
-    win.show()
-  })
+    win.show();
+  });
 
-  // Обработчики IPC для работы с заметками
   ipcMain.handle('notes:load', () => {
-    return loadNotes()
-  })
+    return loadData();
+  });
 
-  ipcMain.handle('notes:save', (event, notes) => {
-    return saveNotes(notes)
-  })
-
-  ipcMain.handle('notes:delete', (event, id) => {
-    const notes = loadNotes()
-    const filteredNotes = notes.filter(note => note.id !== id)
-    return saveNotes(filteredNotes)
-  })
+  ipcMain.handle('notes:save', (event, data) => {
+    return saveData(data);
+  });
 }
 
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
-})
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});

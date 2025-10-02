@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Сайдбар -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Notes</h1>
+                <button class="new-note-btn" id="newNoteBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 20v-8m0 0V4m0 8h8m-8 0H4"/></svg>
+                </button>
+            </div>
+            <div class="notes-list" id="notesList">
+                <!-- Список заметок будет здесь -->
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="content" id="contentArea">
+            <div class="empty-state" id="emptyState">
+            </div>
+
+            <div class="content-editor" id="contentEditor" style="display: none;">
+                <div class="content-header">
+                    <input 
+                        type="text" 
+                        class="note-title-input" 
+                        id="noteTitleInput"
+                        placeholder="Название"
+                        readonly
+                    >
+                    <button class="edit-btn" id="editBtn">Изменить</button>
+                    <button class="save-btn" id="saveBtn" style="display: none;" disabled>Сохранить</button>
+                </div>
+                <textarea 
+                    class="note-content" 
+                    id="noteContentInput"
+                    placeholder="Содержимое"
+                    readonly
+                ></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="save-indicator" id="saveIndicator">Сохранено</div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
